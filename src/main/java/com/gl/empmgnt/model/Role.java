@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 
 @Entity
@@ -16,8 +18,8 @@ import lombok.Data;
 public class Role {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+	@GenericGenerator(name = "native", strategy = "native")
 	private int roleId;
 
 	private String roleName;
