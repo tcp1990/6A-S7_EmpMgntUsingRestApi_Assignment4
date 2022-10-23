@@ -16,17 +16,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="employees")
+@Table(name = "employees")
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-    private String firstName;
-    
-    private String lastName;
-    
-    private String emailAddress;
+	private String firstName;
+
+	private String lastName;
+
+	private String emailAddress;
 
 }
