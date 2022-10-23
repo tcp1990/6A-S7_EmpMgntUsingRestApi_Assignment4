@@ -35,5 +35,11 @@ public class BootstrapAppData {
 		samEmpObj.setLastName("Chandran");
 		samEmpObj.setEmailAddress("samnithyananth@gmail.com");
 		this.employeeRepository.save(samEmpObj);
+		
+		Employee karthickEmpObj = new Employee();
+		karthickEmpObj.setFirstName("KarthickRaja");
+		karthickEmpObj.setLastName("Ramasamy");
+		karthickEmpObj.setEmailAddress("karthickraja@gmail.com");
+		this.employeeRepository.save(karthickEmpObj);
 	}
 }
