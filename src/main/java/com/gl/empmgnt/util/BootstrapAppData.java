@@ -3,6 +3,7 @@ package com.gl.empmgnt.util;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.gl.empmgnt.model.Employee;
 import com.gl.empmgnt.model.Role;
@@ -19,6 +20,8 @@ public class BootstrapAppData {
 	private final EmployeeRepository employeeRepository;
 
 	private final UserRepository userRepository;
+
+	private final PasswordEncoder passwordEncoder;
 
 	@EventListener(ApplicationReadyEvent.class)
 	public void insertEmployees(ApplicationReadyEvent event) {
@@ -63,21 +66,21 @@ public class BootstrapAppData {
 
 		User vinayUserObj = new User();
 		vinayUserObj.setUsername("vinay");
-		vinayUserObj.setPassword("welcome");
+		vinayUserObj.setPassword(this.passwordEncoder.encode("welcome"));
 		vinayUserObj.setEmailAddress("vinay@gmail.com");
 		vinayUserObj.addRole(adminRole);
 		this.userRepository.save(vinayUserObj);
 
 		User rakeshUserObj = new User();
 		rakeshUserObj.setUsername("rakesh");
-		rakeshUserObj.setPassword("welcome");
+		rakeshUserObj.setPassword(this.passwordEncoder.encode("welcome"));
 		rakeshUserObj.setEmailAddress("rakesh@gmail.com");
 		rakeshUserObj.addRole(managerRole);
 		this.userRepository.save(rakeshUserObj);
 
 		User kiranUserObj = new User();
 		kiranUserObj.setUsername("kiran");
-		kiranUserObj.setPassword("welcome");
+		kiranUserObj.setPassword(this.passwordEncoder.encode("welcome"));
 		kiranUserObj.setEmailAddress("kiran@gmail.com");
 		kiranUserObj.addRole(userRole);
 		this.userRepository.save(kiranUserObj);
