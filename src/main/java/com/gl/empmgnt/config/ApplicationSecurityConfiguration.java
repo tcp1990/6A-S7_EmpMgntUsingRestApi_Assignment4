@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-private final DomainUserDetailsService userDetailsService;
+	private final DomainUserDetailsService userDetailsService;
 
 	// setup users and permissions
 	@Override
@@ -44,13 +44,12 @@ private final DomainUserDetailsService userDetailsService;
 				.and().sessionManagement().sessionCreationPolicy(STATELESS);
 	}
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        //configure users
-        authenticationManagerBuilder
-                .userDetailsService(this.userDetailsService)
-                .passwordEncoder(bcryptPasswordEncoder());
-    }
+	@Override
+	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		// configure users
+		authenticationManagerBuilder.userDetailsService(this.userDetailsService)
+				.passwordEncoder(bcryptPasswordEncoder());
+	}
 
 	@Primary
 	@Bean
