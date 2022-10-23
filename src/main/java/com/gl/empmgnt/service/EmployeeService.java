@@ -10,6 +10,8 @@ public interface EmployeeService {
 
 	Set<Employee> fetchAllEmployees();
 
+	Set<Employee> fetchEmployeeByFirstName(String firstName);
+
 	Employee fetchEmployeeById(long empId);
 
 	void deleteEmployeeById(long empId);

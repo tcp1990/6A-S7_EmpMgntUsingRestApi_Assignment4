@@ -32,6 +32,11 @@ public class EmployeeRestController {
 		return this.employeeService.fetchAllEmployees();
 	}
 
+	@GetMapping("/search/{firstName}")
+	public Set<Employee> fetchEmployeeByFirstName(@PathVariable("firstName") String firstName) {
+		return this.employeeService.fetchEmployeeByFirstName(firstName);
+	}
+
 	@GetMapping("/{id}")
 	public Employee fetchEmployeeById(@PathVariable("id") long empId) {
 		return this.employeeService.fetchEmployeeById(empId);
