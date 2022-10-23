@@ -43,8 +43,9 @@ public class EmployeeRestController {
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteEmployeeById(@PathVariable("id") long empId) {
+	public String deleteEmployeeById(@PathVariable("id") long empId) {
 		this.employeeService.deleteEmployeeById(empId);
+		return "Deleted employee id - "+ empId;
 	}
 
 }
