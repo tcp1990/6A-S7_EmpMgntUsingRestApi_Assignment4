@@ -1,8 +1,8 @@
 package com.gl.empmgnt.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,35 +10,30 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class DomainUserDetails implements UserDetails {
 
-	private User user;
+	private final String username;
+	private final String password;
+	private final List<GrantedAuthority> authorities;
 
 	public DomainUserDetails(User user) {
-		this.user.setUsername(user.getUsername());
-		this.user.setPassword(user.getPassword());
-		this.user.setRoles(user.getRoles());
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+		this.authorities = user.getRoles().stream().map(Role::getRoleName).map(roleName -> "ROLE_" + roleName)
+				.map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		var roles = this.user.getRoles();
-		for (Role role : roles) {
-			String roleName = role.getRoleName();
-			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roleName);
-			authorities.add(authority);
-		}
-		return authorities;
+		return this.authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		return this.user.getPassword();
+		return this.password;
 	}
 
 	@Override
 	public String getUsername() {
-		return this.user.getUsername();
+		return this.username;
 	}
 
 	@Override
