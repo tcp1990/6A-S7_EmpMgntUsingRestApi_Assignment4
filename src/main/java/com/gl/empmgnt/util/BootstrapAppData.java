@@ -53,13 +53,13 @@ public class BootstrapAppData {
 	public void insertUsersAndRoles(ApplicationReadyEvent event) {
 
 		Role userRole = new Role();
-		userRole.setRoleName("USER");
+		userRole.setRoleName("ROLE_USER");
 
 		Role adminRole = new Role();
-		adminRole.setRoleName("ADMIN");
+		adminRole.setRoleName("ROLE_ADMIN");
 
 		Role managerRole = new Role();
-		managerRole.setRoleName("MANAGER");
+		managerRole.setRoleName("ROLE_MANAGER");
 
 		User vinayUserObj = new User();
 		vinayUserObj.setUsername("vinay");
