@@ -12,16 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "users")
-@Setter
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(of = "userId")
 public class User {
 	@Id
