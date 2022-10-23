@@ -1,11 +1,9 @@
 package com.gl.empmgnt.model;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,28 +24,26 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(of = "userId")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
-    private long userId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long userId;
 
-    private String username;
+	private String username;
 
-    private String password;
+	private String password;
 
-    private String emailAddress;
+	private String emailAddress;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Role> roles;
-    
-    //scaffolding code
-    public void addRole(Role role) {
-    	if(this.roles == null) {
-    		this.roles = new HashSet<>();
-    	}
-    	this.roles.add(role);
-    	role.setUser(this);
-    }
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Role> roles;
+
+	// scaffolding code
+	public void addRole(Role role) {
+		if (this.roles == null) {
+			this.roles = new HashSet<>();
+		}
+		this.roles.add(role);
+		role.setUser(this);
+	}
 
 }
-
