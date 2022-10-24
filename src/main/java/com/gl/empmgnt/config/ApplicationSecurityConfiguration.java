@@ -1,12 +1,11 @@
 package com.gl.empmgnt.config;
 
-import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -30,14 +29,17 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
 		httpSecurity.cors().disable();
 		httpSecurity.csrf().disable();
 		httpSecurity.headers().frameOptions().disable();
-		httpSecurity.authorizeRequests().antMatchers("/h2-console/**", "/login**", "/contact-us**").permitAll()
-				.antMatchers(GET, "/api/employees/**").permitAll().and().authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/api/employees/**").hasRole("ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/employees/**").hasRole("ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("MANAGER").anyRequest().authenticated()
-				.and().formLogin().and().httpBasic()
+		httpSecurity.authorizeRequests().antMatchers(POST, "/api/employees/**").hasRole("ADMIN");
+		httpSecurity.authorizeRequests().antMatchers("/**").permitAll();
+
+//		httpSecurity.authorizeRequests().antMatchers("/h2-console/**", "/login**", "/contact-us**").permitAll();
+//		httpSecurity.authorizeRequests().antMatchers(GET, "/api/employees/**", "/api/roles/**", "/api/users/**").permitAll();
+//		httpSecurity.authorizeRequests().antMatchers(PUT, "/api/employees/**", "/api/roles/**", "/api/users/**").hasRole("ADMIN");
+//		httpSecurity.authorizeRequests().antMatchers(DELETE, "/api/employees/**", "/api/roles/**", "/api/users/**").hasRole("MANAGER");
+
+		httpSecurity.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic()
 				/*
-				 * Set the sessioncreation policy to avoid using cookies for authentication
+				 * Set the session creation policy to avoid using cookies for authentication
 				 * https://stackoverflow.com/questions/50842258/spring-security-caching-my-
 				 * authentication/50847571
 				 */
