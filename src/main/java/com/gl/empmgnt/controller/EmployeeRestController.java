@@ -33,8 +33,8 @@ public class EmployeeRestController {
 	}
 
 	@GetMapping("/search/{firstName}")
-	public Set<Employee> fetchEmployeeByFirstName(@PathVariable("firstName") String firstName) {
-		return this.employeeService.fetchEmployeeByFirstName(firstName);
+	public Set<Employee> fetchAllEmployeesByFirstName(@PathVariable("firstName") String firstName) {
+		return this.employeeService.fetchAllEmployeesByFirstName(firstName);
 	}
 
 	@GetMapping("/{id}")
@@ -45,7 +45,7 @@ public class EmployeeRestController {
 	@DeleteMapping("/{id}")
 	public String deleteEmployeeById(@PathVariable("id") long empId) {
 		this.employeeService.deleteEmployeeById(empId);
-		return "Deleted employee id - "+ empId;
+		return "Deleted employee id - " + empId;
 	}
 
 }

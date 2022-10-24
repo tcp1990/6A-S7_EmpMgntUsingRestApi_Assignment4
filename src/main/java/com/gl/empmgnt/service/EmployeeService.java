@@ -10,7 +10,7 @@ public interface EmployeeService {
 
 	Set<Employee> fetchAllEmployees();
 
-	Set<Employee> fetchEmployeeByFirstName(String firstName);
+	Set<Employee> fetchAllEmployeesByFirstName(String firstName);
 
 	Employee fetchEmployeeById(long empId);
 

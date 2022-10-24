@@ -9,5 +9,5 @@ import com.gl.empmgnt.model.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-	Set<Employee> findByFirstName(String firstName);
+	Set<Employee> findAllByFirstName(String firstName);
 }

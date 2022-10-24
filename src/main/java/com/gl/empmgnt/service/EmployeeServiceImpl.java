@@ -26,8 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return new HashSet<>(this.employeeRepository.findAll());
 	}
 
-	public Set<Employee> fetchEmployeeByFirstName(String firstName) {
-		return this.employeeRepository.findByFirstName(firstName);
+	public Set<Employee> fetchAllEmployeesByFirstName(String firstName) {
+		return this.employeeRepository.findAllByFirstName(firstName);
 	}
 
 	public Employee fetchEmployeeById(long empId) {
