@@ -1,5 +1,6 @@
 package com.gl.empmgnt.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.gl.empmgnt.model.Employee;
@@ -11,6 +12,8 @@ public interface EmployeeService {
 	Set<Employee> fetchAllEmployees();
 
 	Set<Employee> fetchAllEmployeesByFirstName(String firstName);
+	
+	List<Employee> fetchAllEmployeesInSortedOrderByFirstName(String sortingType);
 
 	Employee fetchEmployeeById(long empId);
 
