@@ -30,13 +30,10 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
 		httpSecurity.csrf().disable();
 		httpSecurity.headers().frameOptions().disable();
 		httpSecurity.authorizeRequests().antMatchers(POST, "/api/employees/**").hasRole("ADMIN");
+		httpSecurity.authorizeRequests().antMatchers(PUT, "/api/employees/**",  "/api/roles/**", "/api/users/**").denyAll();
+		httpSecurity.authorizeRequests().antMatchers(DELETE, "/api/roles/**", "/api/users/**").denyAll();
+		//httpSecurity.authorizeRequests().antMatchers("/h2-console/**", "/login**", "/contact-us**").permitAll();
 		httpSecurity.authorizeRequests().antMatchers("/**").permitAll();
-
-//		httpSecurity.authorizeRequests().antMatchers("/h2-console/**", "/login**", "/contact-us**").permitAll();
-//		httpSecurity.authorizeRequests().antMatchers(GET, "/api/employees/**", "/api/roles/**", "/api/users/**").permitAll();
-//		httpSecurity.authorizeRequests().antMatchers(PUT, "/api/employees/**", "/api/roles/**", "/api/users/**").hasRole("ADMIN");
-//		httpSecurity.authorizeRequests().antMatchers(DELETE, "/api/employees/**", "/api/roles/**", "/api/users/**").hasRole("MANAGER");
-
 		httpSecurity.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic()
 				/*
 				 * Set the session creation policy to avoid using cookies for authentication
